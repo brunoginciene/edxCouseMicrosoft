@@ -3,6 +3,17 @@ var express = require('express');
 var app = express();
 var bodyParser = require('body-parser');
 
+//database
+const pg = require('pg');
+
+client = new pg.Client({
+    host: 'localhost',
+    user: 'gitpod',
+    password: 'postgres',
+    database: 'postgres',
+    port: 5432
+});
+
 //mounts BodyParser as middleware - every request passes through it
 app.use(bodyParser.urlencoded({ extended: true })); 
 
@@ -27,6 +38,9 @@ var quotes = [
         year: 1910
     }
 ];
+
+//teste DB
+client.query('CREATE TABLE Contacts (first_name TEXT, last_name TEXT, age INTEGER)')
 
 // ROUTES
 
